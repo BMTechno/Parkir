@@ -1,5 +1,6 @@
 package com.tomcat.parkir;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -8,6 +9,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -28,14 +30,18 @@ import org.w3c.dom.Document;
 
 import java.util.ArrayList;
 
+import static android.R.attr.id;
+
 public class DetailParkirActivity extends AppCompatActivity  implements OnMapReadyCallback {
 
 
     private GoogleMap mMap;
+    private GPSTracker gps;
     public Parkir parkir;
+    public boolean isParkirSaved;
     public LatLng currentCoordinate;
     public LatLng targetCoordinate;
-    GPSTracker gps;
+    private Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,19 +79,47 @@ public class DetailParkirActivity extends AppCompatActivity  implements OnMapRea
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_detailparkir, menu);
+        this.menu = menu;
+        setMenu();
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
         switch (item.getItemId()) {
+            case R.id.action_save:
+                saveParkir();
+                return true;
             case android.R.id.home:
                 onBackPressed();
                 return true;
         }
-
         return super.onOptionsItemSelected(item);
+    }
+    public void setMenu(){
+        if(isParkirSaved){
+            MenuItem item = menu.findItem(R.id.action_save);
+            item.setIcon(R.mipmap.star_yellow);
+        }
+        else{
+            MenuItem item = menu.findItem(R.id.action_save);
+            item.setIcon(R.mipmap.star_white);
+        }
     }
 
     public void getDetailParkir(String parkirId){
         DB db = new DB(this, new User(this));
         parkir = db.getDetailParkir(parkirId);
+        if(db.checkParkirSave(parkirId)>0)
+            isParkirSaved = true;
+        else
+            isParkirSaved = false;
     }
 
     /**
@@ -164,5 +198,25 @@ public class DetailParkirActivity extends AppCompatActivity  implements OnMapRea
         textParkirPrice.setText(price);
         textParkirAddress.setText(parkir.getAddress());
         textParkirAvailable.setText(parkir.getAvailable()+" / "+parkir.getCapacity()+" Available");
+
+    }
+
+    public void saveParkir(){
+        DB db = new DB(this, new User(this));
+        if(!isParkirSaved){
+            //save parkir
+            if(db.saveParkir(""+parkir.getId()))
+                isParkirSaved = true;
+            else
+                isParkirSaved = false;
+        }
+        else{
+            //remove save parkir
+            if(db.removeSaveParkir(""+parkir.getId()))
+                isParkirSaved = false;
+            else
+                isParkirSaved = true;
+        }
+        setMenu();
     }
 }

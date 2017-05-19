@@ -2,6 +2,7 @@ package com.tomcat.parkir;
 
 import android.content.Intent;
 import android.os.StrictMode;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -14,15 +15,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.tomcat.parkir.DB.DB;
+import com.tomcat.parkir.Object.Parkir;
+import com.tomcat.parkir.Object.User;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.R.attr.fragment;
 
 public class HomeActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
-
+    private Parkir parkir;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,11 +47,12 @@ public class HomeActivity extends AppCompatActivity {
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
     }
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new ListParkirFragment(), "Nearby");
-        adapter.addFragment(new Zbackup_TwoFragment(), "Favourite");
+        adapter.addFragment(new ListParkirFragment(), "Favorite");
         //adapter.addFragment(new ThreeFragment(), "THREE");
         viewPager.setAdapter(adapter);
     }
@@ -59,6 +67,22 @@ public class HomeActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                    Bundle bundle = new Bundle();
+                    Parkir parkir[] = getListParkir();
+                    bundle.putSerializable("Parkir", parkir);
+                    mFragmentList.get(position).setArguments(bundle);
+                    break;
+                case 1:
+                    Bundle bundle2 = new Bundle();
+                    Parkir parkir2[] = getListParkirSave();
+                    bundle2.putSerializable("Parkir", parkir2);
+                    mFragmentList.get(position).setArguments(bundle2);
+                    break;
+                default:
+                    break;
+            }
             return mFragmentList.get(position);
         }
 
@@ -100,5 +124,15 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public Parkir[] getListParkir(){
+        DB db = new DB(this, new User(this));
+        return db.getListParkir();
+    }
+    public Parkir[] getListParkirSave(){
+        DB db = new DB(this, new User(this));
+        return db.getListParkirSave();
     }
 }

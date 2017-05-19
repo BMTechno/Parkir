@@ -45,9 +45,40 @@ public class DBHelper {
         params.add(new BasicNameValuePair("password", password));
         return send(params);
     }
+    public int getListParkirSave(){
+        List<NameValuePair> params=new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("action", "getListParkirSave"));
+        params.add(new BasicNameValuePair("id", id));
+        params.add(new BasicNameValuePair("password", password));
+        return send(params);
+    }
     public int getDetailParkir(String parkirId){
         List<NameValuePair> params=new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("action", "getDetailParkir"));
+        params.add(new BasicNameValuePair("parkir_id", parkirId));
+        params.add(new BasicNameValuePair("id", id));
+        params.add(new BasicNameValuePair("password", password));
+        return send(params);
+    }
+    public int checkParkirSave(String parkirId){
+        List<NameValuePair> params=new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("action", "checkParkirSave"));
+        params.add(new BasicNameValuePair("parkir_id", parkirId));
+        params.add(new BasicNameValuePair("id", id));
+        params.add(new BasicNameValuePair("password", password));
+        return send(params);
+    }
+    public int saveParkir(String parkirId){
+        List<NameValuePair> params=new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("action", "saveParkir"));
+        params.add(new BasicNameValuePair("parkir_id", parkirId));
+        params.add(new BasicNameValuePair("id", id));
+        params.add(new BasicNameValuePair("password", password));
+        return send(params);
+    }
+    public int removeSaveParkir(String parkirId){
+        List<NameValuePair> params=new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("action", "removeSaveParkir"));
         params.add(new BasicNameValuePair("parkir_id", parkirId));
         params.add(new BasicNameValuePair("id", id));
         params.add(new BasicNameValuePair("password", password));

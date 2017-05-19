@@ -1,10 +1,12 @@
 package com.tomcat.parkir.Object;
 
+import java.io.Serializable;
+
 /**
  * Created by albertbrucelee on 26/04/17.
  */
 
-public class Parkir {
+public class Parkir implements Serializable {
     private int id;
     private double latitude;
     private double longitude;

@@ -41,7 +41,7 @@ public class ListParkirFragment extends Fragment {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();	//biar koneksi bisa dijalanin di main, karena aturannya koneksi gk boleh di Main langsung
         StrictMode.setThreadPolicy(policy);
 
-        getListParkir();
+        parkir = (Parkir[]) getArguments().getSerializable("Parkir");
 
         gps = new GPSTracker(getActivity());
         if (gps.canGetLocation()) {
@@ -115,11 +115,6 @@ public class ListParkirFragment extends Fragment {
     public void onLowMemory() {
         super.onLowMemory();
         mMapView.onLowMemory();
-    }
-
-    public void getListParkir(){
-        DB db = new DB(getActivity(), new User(getContext()));
-        parkir = db.getListParkir();
     }
 
     public void setUpMap(){
