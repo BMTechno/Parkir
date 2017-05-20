@@ -2,6 +2,7 @@
     <string name="app_name">Parkir</string>
     <string name="title_activity_maps">Map</string>
     <string name="title_detail_parkir">Rute Parkir</string>
+    <string name="title_request_parkir">Request Parkir</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -28,6 +29,7 @@
     <string name="signal3">No Connection!</string>
     <string name="signal4">Sorry, Cannot Connect To Server!</string>
 
+    <string name="textSuccess">Sukses</string>
     <string name="pleaseLogin">Please Login!</string>
     <string name="login">Login</string>
     <string name="textEmailInput">Masukkan Email</string>
@@ -36,13 +38,14 @@
     <string name="btnSignup">Daftar</string>
     <string name="btnLogout">Log Out</string>btnRequestParkir
     <string name="btnRequestParkir">Request Parkir</string>
+    <string name="textRequestFailed">Gagal Request</string>
 
 
     <string name="textParkirPickLocation">Pick Location</string>
     <string name="textParkirName">Name</string>
     <string name="textParkirAddress">Detail Address</string>
     <string name="textParkirPrice">Price</string>
-    <string name="textParkirInfo">Other Info</string>
+    <string name="textParkirCapacity">Capacity</string>
     <string name="btnSubmit">Submit</string>
 
     <string name="t1">Sudah memiliki akun?</string>

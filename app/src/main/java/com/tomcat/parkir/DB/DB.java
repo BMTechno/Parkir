@@ -144,8 +144,8 @@ public class DB {
         }
         return false;
     }
-    public int requestParkir(String lat, String lng, String name, String address, String price, String info){
-        int signal=dbH.requestParkir(lat, lng, name, address, price, info);
+    public int requestParkir(double lat, double lng, String name, String address, String price, int capacity){
+        int signal=dbH.requestParkir(lat, lng, name, address, price, capacity);
         return signal;
     }
     public boolean register(){

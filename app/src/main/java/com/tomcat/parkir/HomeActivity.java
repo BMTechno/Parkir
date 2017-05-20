@@ -119,7 +119,6 @@ public class HomeActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             Intent i = new Intent(getApplicationContext(), PreferenceActivity.class);
             startActivity(i);
-            finish();
             return true;
         }
 
