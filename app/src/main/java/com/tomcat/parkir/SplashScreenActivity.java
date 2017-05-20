@@ -87,15 +87,15 @@ public class SplashScreenActivity extends AppCompatActivity {
                             break;
                         case 1:
                             Toast.makeText(getApplicationContext(), getString(R.string.pleaseLogin), Toast.LENGTH_SHORT).show();
-                            i = new Intent(SplashScreenActivity.this, MainActivity.class);
+                            i = new Intent(SplashScreenActivity.this, LoginActivity.class);
                             break;
                         case 2:
                             Toast.makeText(getApplicationContext(), getString(R.string.signal4), Toast.LENGTH_SHORT).show();
-                            i = new Intent(SplashScreenActivity.this, MainActivity.class);
+                            i = new Intent(SplashScreenActivity.this, LoginActivity.class);
                             break;
                         case 3:
                             Toast.makeText(getApplicationContext(), getString(R.string.signal2), Toast.LENGTH_SHORT).show();
-                            i = new Intent(SplashScreenActivity.this, MainActivity.class);
+                            i = new Intent(SplashScreenActivity.this, LoginActivity.class);
                             break;
                         case 4:
                             Toast.makeText(getApplicationContext(), getString(R.string.signal3), Toast.LENGTH_SHORT).show();

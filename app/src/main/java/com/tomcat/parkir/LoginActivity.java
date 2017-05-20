@@ -322,5 +322,13 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         DB db = new DB(getApplicationContext(), user);
         return db.login();
     }
+
+    public void klikRegister(View v) {
+
+        Intent regis = new Intent(LoginActivity.this, RegisterActivity.class );
+        startActivity(regis);
+
+    }
+
 }
 
