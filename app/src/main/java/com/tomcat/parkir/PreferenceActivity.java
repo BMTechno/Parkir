@@ -46,7 +46,7 @@ public class PreferenceActivity extends AppCompatActivity {
         if(!user.deleteAuth())
             return;
 
-        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+        Intent i = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(i);
         finish();
     }

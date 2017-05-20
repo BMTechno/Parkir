@@ -21,33 +21,42 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             >
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            android:text="TODO: About this application" />
-        <Button
-            android:id="@+id/btnRequestParkir"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btnRequestParkir"
-            tools:layout_editor_absoluteX="53dp"
-            tools:layout_editor_absoluteY="149dp"
-            android:layout_marginTop="20dp"
-            android:layout_below="@+id/textView"
-            android:layout_centerHorizontal="true" />
-        <Button
-            android:id="@+id/btnLogout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/btnLogout"
-            tools:layout_editor_absoluteX="53dp"
-            tools:layout_editor_absoluteY="149dp"
-            android:layout_marginTop="33dp"
-            android:layout_below="@+id/btnRequestParkir"
-            android:layout_centerHorizontal="true" />
+
+                <Button
+                    android:id="@+id/btnRequestParkir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btnRequestParkir"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="149dp"
+                    android:layout_marginTop="201dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true" />
+                <Button
+                    android:id="@+id/btnLogout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btnLogout"
+                    tools:layout_editor_absoluteX="53dp"
+                    tools:layout_editor_absoluteY="149dp"
+                    android:layout_below="@+id/btnRequestParkir"
+                    android:layout_alignRight="@+id/textView6"
+                    android:layout_alignEnd="@+id/textView6" />
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cari Parkir v1.0"
+                    android:layout_above="@+id/textView7"
+                    android:layout_centerHorizontal="true" />
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Copyright 2017 TOMCAT Inc."
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="23dp" />
         </RelativeLayout>
 </LinearLayout>

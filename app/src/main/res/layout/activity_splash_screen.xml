@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/imgLogo"
-        app:srcCompat="@mipmap/logo_old"
+        app:srcCompat="@mipmap/logo_cari"
         android:layout_width="218dp"
         android:layout_height="254dp"
         android:layout_alignParentTop="true"
