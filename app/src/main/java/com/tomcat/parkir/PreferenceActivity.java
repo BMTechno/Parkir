@@ -22,6 +22,15 @@ public class PreferenceActivity extends AppCompatActivity {
                 logout();
             }
         });
+
+        Button btnRequestParkir = (Button) findViewById(R.id.btnRequestParkir);
+        btnRequestParkir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), RequestParkirActivity.class);
+                startActivity(i);
+            }
+        });
     }
     public void logout(){
         User user = new User(this);

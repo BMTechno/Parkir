@@ -84,6 +84,19 @@ public class DBHelper {
         params.add(new BasicNameValuePair("password", password));
         return send(params);
     }
+    public int requestParkir(String lat, String lng, String name, String address, String price, String info){
+        List<NameValuePair> params=new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("action", "requestParkir"));
+        params.add(new BasicNameValuePair("parkir_lat", lat));
+        params.add(new BasicNameValuePair("parkir_lng", lng));
+        params.add(new BasicNameValuePair("parkir_name", name));
+        params.add(new BasicNameValuePair("parkir_address", address));
+        params.add(new BasicNameValuePair("parkir_price", price));
+        params.add(new BasicNameValuePair("parkir_info", info));
+        params.add(new BasicNameValuePair("id", id));
+        params.add(new BasicNameValuePair("password", password));
+        return send(params);
+    }
 
     public int login(String username, String password){
         List<NameValuePair> params=new ArrayList<NameValuePair>();

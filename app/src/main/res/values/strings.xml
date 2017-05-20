@@ -34,7 +34,16 @@
     <string name="textPasswordInput">Password</string>
     <string name="btnLogin">Masuk</string>
     <string name="btnSignup">Daftar</string>
-    <string name="btnLogout">Log Out</string>
+    <string name="btnLogout">Log Out</string>btnRequestParkir
+    <string name="btnRequestParkir">Request Parkir</string>
+
+
+    <string name="textParkirPickLocation">Pick Location</string>
+    <string name="textParkirName">Name</string>
+    <string name="textParkirAddress">Detail Address</string>
+    <string name="textParkirPrice">Price</string>
+    <string name="textParkirInfo">Other Info</string>
+    <string name="btnSubmit">Submit</string>
 
     <string name="t1">Sudah memiliki akun?</string>
     <string name="t2">Baru menggunakan aplikasi ini?</string>

@@ -144,6 +144,10 @@ public class DB {
         }
         return false;
     }
+    public int requestParkir(String lat, String lng, String name, String address, String price, String info){
+        int signal=dbH.requestParkir(lat, lng, name, address, price, info);
+        return signal;
+    }
     public boolean register(){
 
         int signal=dbH.register(user.getUsername(),user.getPassword());

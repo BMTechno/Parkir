@@ -10,13 +10,25 @@
         android:layout_height="551dp"
         tools:layout_editor_absoluteY="8dp"
         tools:layout_editor_absoluteX="8dp">
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="11dp"
-            android:layout_marginStart="11dp"
-            android:text="About asdoash sadh sadhu" />
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:text="TODO: About this application" />
+        <Button
+            android:id="@+id/btnRequestParkir"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btnRequestParkir"
+            tools:layout_editor_absoluteX="53dp"
+            tools:layout_editor_absoluteY="149dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/textView"
+            android:layout_centerHorizontal="true" />
         <Button
             android:id="@+id/btnLogout"
             android:layout_width="wrap_content"
@@ -24,9 +36,8 @@
             android:text="@string/btnLogout"
             tools:layout_editor_absoluteX="53dp"
             tools:layout_editor_absoluteY="149dp"
-            android:layout_below="@+id/textView"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="17dp" />
+            android:layout_marginTop="33dp"
+            android:layout_below="@+id/btnRequestParkir"
+            android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
