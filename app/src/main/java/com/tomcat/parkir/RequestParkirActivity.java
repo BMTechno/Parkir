@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -43,12 +45,6 @@ public class RequestParkirActivity extends AppCompatActivity implements OnMapRea
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.title_request_parkir);
 
-
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();	//biar koneksi bisa dijalanin di main, karena aturannya koneksi gk boleh di Main langsung
-        StrictMode.setThreadPolicy(policy);
-
-
-
         gps = new GPSTracker(this);
         if (gps.canGetLocation()) {
             userLatLng = new LatLng(gps.getLatitude(), gps.getLongitude());
@@ -71,6 +67,24 @@ public class RequestParkirActivity extends AppCompatActivity implements OnMapRea
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
     class Submit extends AsyncTask<Integer, Integer, Integer> {
         double lat; double lng; String name; String address; String price; int capacity;
         Submit(double lat, double lng, String name, String address, String price, int capacity) {
