@@ -144,6 +144,16 @@ public class DB {
         }
         return false;
     }
+    public boolean register(){
+
+        int signal=dbH.register(user.getUsername(),user.getPassword());
+        if (signal==0){
+            user.setUsername(null);
+            user.setPassword(null);
+            return true;
+        }
+        return false;
+    }
     public int auth(){
         return dbH.auth(user.getUsername(),user.getPassword());
     }

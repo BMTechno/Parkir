@@ -130,13 +130,15 @@ public class ListParkirFragment extends Fragment {
         mMap.animateCamera(CameraUpdateFactory.zoomTo(14));
     }
     public void setUpParkir(){
-        LatLng coordinate[] = new LatLng[parkir.length];
-        for(int i=0; i<coordinate.length; i++){
-            coordinate[i] = new LatLng(parkir[i].getLatitude(), parkir[i].getLongitude());
-            mMap.addMarker(new MarkerOptions().position(coordinate[i]).title(parkir[i].getName()));
+        if(parkir!=null){
+            LatLng coordinate[] = new LatLng[parkir.length];
+            for(int i=0; i<coordinate.length; i++){
+                coordinate[i] = new LatLng(parkir[i].getLatitude(), parkir[i].getLongitude());
+                mMap.addMarker(new MarkerOptions().position(coordinate[i]).title(parkir[i].getName()));
 
+            }
+            mMap.setOnInfoWindowClickListener(getInfoWindowClickListener());
         }
-        mMap.setOnInfoWindowClickListener(getInfoWindowClickListener());
     }
 
     public GoogleMap.OnInfoWindowClickListener getInfoWindowClickListener()

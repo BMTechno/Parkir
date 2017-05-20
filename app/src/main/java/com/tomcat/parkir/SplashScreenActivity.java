@@ -1,6 +1,5 @@
 package com.tomcat.parkir;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
@@ -14,8 +13,6 @@ import com.tomcat.parkir.DB.DB;
 import com.tomcat.parkir.Object.User;
 
 import java.util.Calendar;
-
-import static android.R.attr.delay;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -89,7 +86,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                             i = new Intent(SplashScreenActivity.this, HomeActivity.class);
                             break;
                         case 1:
-                            Toast.makeText(getApplicationContext(), getString(R.string.mainFailedLogin), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), getString(R.string.pleaseLogin), Toast.LENGTH_SHORT).show();
                             i = new Intent(SplashScreenActivity.this, MainActivity.class);
                             break;
                         case 2:

@@ -36,16 +36,13 @@ public class MainActivity extends Activity {
     }
 
     public void ClickDaftar(View V){
-        //Intent i = new Intent(getApplicationContext(), DaftarActivity.class);
-        //startActivity(i);
-        //overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
-        //finish();
+        Intent i = new Intent(getApplicationContext(), RegisterActivity.class);
+        startActivity(i);
     }
 
     public void ClickLogin(View V){
         Intent i = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(i);
-        finish();
     }
 
 

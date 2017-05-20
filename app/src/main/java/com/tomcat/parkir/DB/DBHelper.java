@@ -17,7 +17,7 @@ import java.util.List;
 */
 public class DBHelper {
     //private String url="http://192.168.1.123/scs/index.php";
-    private String url="http://192.168.1.14/parkir/index.php";  //192.168.1.14
+    private String url="http://192.168.1.4/parkir/index.php";  //192.168.1.14
 
     private DBServer dbS;
     private DBLocal dbL;
@@ -88,6 +88,13 @@ public class DBHelper {
     public int login(String username, String password){
         List<NameValuePair> params=new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("action", "login"));
+        params.add(new BasicNameValuePair("id", username));
+        params.add(new BasicNameValuePair("password", password));
+        return send(params);
+    }
+    public int register(String username, String password){
+        List<NameValuePair> params=new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("action", "register"));
         params.add(new BasicNameValuePair("id", username));
         params.add(new BasicNameValuePair("password", password));
         return send(params);
