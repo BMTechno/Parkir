@@ -25,7 +25,6 @@
 
 
 
-
         <ScrollView
             android:id="@+id/login_form"
             android:layout_width="match_parent"
@@ -37,11 +36,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/textView11"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/textParkirPickLocation" />
 
                 <RelativeLayout
                     android:layout_height="380dp"
@@ -49,6 +43,25 @@
                     <include layout="@layout/activity_maps"/>
                 </RelativeLayout>
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/textView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="Use my location or " />
+                    <Button
+                        android:id="@+id/btnPick"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pick Location"
+                        android:background="@color/colorPrimary"
+                        android:textColor="@color/putih"
+                        android:layout_centerHorizontal="true"/>
+                </RelativeLayout>
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_width="match_parent"

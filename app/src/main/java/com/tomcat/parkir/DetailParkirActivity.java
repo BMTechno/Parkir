@@ -30,7 +30,6 @@ import org.w3c.dom.Document;
 
 import java.util.ArrayList;
 
-import static android.R.attr.id;
 
 public class DetailParkirActivity extends AppCompatActivity  implements OnMapReadyCallback {
 

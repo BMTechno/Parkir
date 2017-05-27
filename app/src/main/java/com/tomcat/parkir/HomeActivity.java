@@ -29,7 +29,8 @@ public class HomeActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    private Parkir parkir;
+    private Parkir parkir[];
+    private Parkir parkir2[];
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,13 +71,13 @@ public class HomeActivity extends AppCompatActivity {
             switch (position) {
                 case 0:
                     Bundle bundle = new Bundle();
-                    Parkir parkir[] = getListParkir();
+                    parkir = getListParkir();
                     bundle.putSerializable("Parkir", parkir);
                     mFragmentList.get(position).setArguments(bundle);
                     break;
                 case 1:
                     Bundle bundle2 = new Bundle();
-                    Parkir parkir2[] = getListParkirSave();
+                    parkir2 = getListParkirSave();
                     bundle2.putSerializable("Parkir", parkir2);
                     mFragmentList.get(position).setArguments(bundle2);
                     break;

@@ -1,5 +1,13 @@
 package com.tomcat.parkir;
 
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+import com.tomcat.parkir.DB.DB;
+import com.tomcat.parkir.Object.Parkir;
+import com.tomcat.parkir.Object.User;
+
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Handler;
@@ -15,6 +23,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -22,19 +32,26 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.tomcat.parkir.DB.DB;
-import com.tomcat.parkir.Object.Parkir;
-import com.tomcat.parkir.Object.User;
 
-import static android.R.attr.name;
-import static android.R.id.input;
+import java.io.Console;
+
+import static com.tomcat.parkir.R.id.inputCapacity;
+import static com.tomcat.parkir.R.id.inputPrice;
+import static com.tomcat.parkir.R.id.map;
+
 
 public class RequestParkirActivity extends AppCompatActivity implements OnMapReadyCallback{
 
     MapView mMapView;
     private GoogleMap mMap;
+    private Marker marker;
     private LatLng userLatLng;
     public GPSTracker gps;
+    int PLACE_PICKER_REQUEST = 1;
+    private EditText textInputName;
+    private EditText textInputAddress;
+    private EditText textInputPrice;
+    private EditText textInputCapacity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,21 +67,50 @@ public class RequestParkirActivity extends AppCompatActivity implements OnMapRea
             userLatLng = new LatLng(gps.getLatitude(), gps.getLongitude());
         }
 
+
+        textInputName = (EditText) findViewById(R.id.inputName);
+        textInputAddress = (EditText) findViewById(R.id.inputAddress);
+        textInputPrice = (EditText) findViewById(inputPrice);
+        textInputCapacity = (EditText) findViewById(inputCapacity);
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+                .findFragmentById(map);
         mapFragment.getMapAsync(this);
+
+
+        Button btnPick = (Button)findViewById(R.id.btnPick);
+        btnPick.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+                try {
+                    startActivityForResult(builder.build(RequestParkirActivity.this), PLACE_PICKER_REQUEST);
+                } catch (GooglePlayServicesRepairableException e) {
+                    e.printStackTrace();
+                } catch (GooglePlayServicesNotAvailableException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+//        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+//        try {
+//            startActivityForResult(builder.build(this), PLACE_PICKER_REQUEST);
+//        } catch (GooglePlayServicesRepairableException e) {
+//            e.printStackTrace();
+//        } catch (GooglePlayServicesNotAvailableException e) {
+//            e.printStackTrace();
+//        }
 
         Button btnRequestParkir = (Button) findViewById(R.id.btnSubmit);
         btnRequestParkir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText inputName = (EditText) findViewById(R.id.inputName);
-                EditText inputAddress = (EditText) findViewById(R.id.inputAddress);
-                EditText inputPrice = (EditText) findViewById(R.id.inputPrice);
-                EditText inputCapacity = (EditText) findViewById(R.id.inputCapacity);
-                new Submit(userLatLng.latitude,userLatLng.longitude,inputName.getText().toString(),inputAddress.getText().toString(),inputPrice.getText().toString(),Integer.parseInt(inputCapacity.getText().toString())).execute();
+
+                new Submit(userLatLng.latitude,userLatLng.longitude,textInputName.getText().toString(),textInputAddress.getText().toString(),textInputPrice.getText().toString(),Integer.parseInt(textInputCapacity.getText().toString())).execute();
             }
         });
+
+
     }
 
     @Override
@@ -146,8 +192,22 @@ public class RequestParkirActivity extends AppCompatActivity implements OnMapRea
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         setUpMap();
+        setUpMarker();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PLACE_PICKER_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                Log.i("YYYY ","1");
+                Place place = PlacePicker.getPlace(data, this);
+                //Log.i("Place ",""+place.getName()+ " "+place.getId()+ " " + place.getAddress()+ " "+place.getAttributions());
+                userLatLng = place.getLatLng();
+                textInputAddress.setText(place.getAddress());
+                marker.setPosition(userLatLng);
+            }
+        }
+    }
 
     public void setUpMap(){
         double currentLatitude=0;
@@ -168,5 +228,9 @@ public class RequestParkirActivity extends AppCompatActivity implements OnMapRea
         mMap.moveCamera(CameraUpdateFactory.newLatLng(currentCoordinate));
         // Zoom in the Google Map
         mMap.animateCamera(CameraUpdateFactory.zoomTo(14));
+
+    }
+    public void setUpMarker(){
+        marker = mMap.addMarker(new MarkerOptions().position(userLatLng));
     }
 }

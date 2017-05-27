@@ -17,7 +17,7 @@ import java.util.List;
 */
 public class DBHelper {
     //private String url="http://192.168.1.123/scs/index.php";
-    private String url="http://192.168.0.9/parkir/index.php";  //192.168.1.14
+    private String url="http://172.20.35.26/parkir/index.php";  //192.168.1.14
 
     private DBServer dbS;
     private DBLocal dbL;
